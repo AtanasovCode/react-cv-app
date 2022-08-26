@@ -92,14 +92,11 @@ button {
 
 
 .edit-icon {
-  width: 15px;
-  height: 15px;
-  background-color: var(--main-bg);
+  width: 20px;
+  height: 20px;
   color: var(--form-bg);
-  border-radius: 6px;
-  border: none;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 15px;
 }
 
 

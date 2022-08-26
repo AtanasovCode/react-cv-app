@@ -1,11 +1,21 @@
-.practical-full-container {
-    margin-bottom: 76px;
+.practical-container {
+    padding: 25px;
+    height: 400px;
+    width: 500px;
+    margin-bottom: 25px;
 }
 
 .practical-displayed-info {
+    width: 350px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
+}
+
+.displayed-heading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .practical-company {
@@ -14,11 +24,45 @@
 }
 
 .company-name {
-    font-size: 26px;
-    font-weight: 700;
+    display: flex;
+}
+
+.practical-info {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .position {
-    font-size: 19px;
-    opacity: .7;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.displayed-practical-description {
+    opacity: .9;
+    margin-top: 15px;
+    margin-left: 25px;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+
+.practical-description {
+    resize: none;
+    height: 70px;
+    width: 300px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+
+.year-container {
+    width: 80%;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
