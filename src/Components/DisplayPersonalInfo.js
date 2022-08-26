@@ -2,98 +2,170 @@ import React from 'react';
 import Input from '../Input';
 import '../styles/PersonalInfo.css';
 
+
+
+const initialState = {
+    displayInfo: 0,
+    name: 'John Doe',
+    phone: '55511322',
+    mail: 'example@example.com',
+    title: 'Junior Examplerer',
+    city: 'London',
+    description: 'A brief description of who you are and your experience',
+    linkedin: 'yourlinkedinusername',
+    github: 'yourgithubusername',
+}
+
 class displayPersonalInfo extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            displayInfo: 0,
-            name: '',
-            surname: '',
-            phone: '',
-            mail: '',
+            ...initialState
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange = (e) => {
+    handleChange = ({ target: { name, value } }) => {
         this.setState({
-            [e.target.name]: e.target.value,
+            [name]: value,
         })
     }
 
 
     handleSubmit = (e) => {
-        const {school, yearStart, yearEnd, degree } = this.state;
-        if(!school || !degree || !yearStart || !yearEnd){
-            return {displayInfo: 0}
-        };
-        this.setState(() => {
-            if (this.state.displayInfo === 0) {
-                return { displayInfo: 1 }
-            }
-
+        const { name, phone, mail, title, city, description, github, linkedin } = this.state;
+        if (
+            !name
+            || !mail
+            || !phone
+            || !title
+            || !city
+            || !description
+            || !github
+            || !linkedin
+        ) {
+            console.log(description);
             return { displayInfo: 0 }
-        })
+        } else {
+            e.preventDefault();
+            this.setState(() => {
+                if (this.state.displayInfo === 0) {
+                    return { displayInfo: 1 }
+                }
+
+                return { displayInfo: 0 }
+            })
+        }
     }
 
 
 
     display = () => {
-        const { name, surname, phone, mail, title, city } = this.state;
-        if (this.state.displayInfo === 1) {
+        const { name, phone, mail, title, city, github, linkedin, description } = this.state;
+        if (this.state.displayInfo === 0) {
             return (
-                <div className="personal-form-container">
-                    <div className="personal-displayed-container">
-                        <div className="personal-heading">
-                            <div className="name-container">
-                                <h1>{name}{" "}{surname}</h1>
-                                <h3 className="title">{title}</h3>
-                            </div>
-                            <div className="img-container">
-                                <img
-                                    src={require("../../src/assets/edit.png")}
-                                    alt="edit-icon"
-                                    className="edit-icon"
-                                    onClick={this.handleSubmit}
-                                />
-                            </div>
-                        </div>
-                        <div className="other-info-container">
-                            <div>Phone: {phone}</div>
-                            <div>Mail: {mail}</div>
-                            <div>Located: {city}</div>
-                        </div>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <form onSubmit={this.handleSubmit} className="personal-form-container">
+                <form className="personal-form-container">
                     <div className="form-heading">
                         <h1>Personal Info</h1>
                         <img
-                            src={require("../../src/assets/addition.png")}
+                            src={require("../../src/assets/addition-personal.png")}
                             alt="add-icon"
                             className="add-icon"
+                            onClick={this.handleSubmit}
                         />
                     </div>
                     <div className="personal-input-container">
                         <div>
-                            <Input labelName="Name:" type="text" name="name" onChange={this.handleChange} />
-                            <Input labelName="Surname:" type="text" name="surname" onChange={this.handleChange} />
-                            <Input labelName="Job Title:" type="text" name="title" onChange={this.handleChange} />
+                            <Input labelName="Full Name" type="text" name="name" onChange={this.handleChange} />
+                            <Input labelName="Job Title" type="text" name="title" onChange={this.handleChange} />
+                            <textarea
+                                maxLength="125"
+                                className="personal-desc"
+                                name="description"
+                                placeholder="Short Description About Yourself..."
+                                onChange={this.handleChange}
+                            />
                         </div>
                         <div>
-                            <Input labelName="Phone:" type="number" name="phone" onChange={this.handleChange} />
-                            <Input labelName="E-Mail:" type="text" name="mail" onChange={this.handleChange} />
-                            <Input labelName="City:" type="text" name="city" onChange={this.handleChange} />
+                            <Input labelName="Phone" type="number" name="phone" onChange={this.handleChange} />
+                            <Input labelName="E-Mail" type="text" name="mail" onChange={this.handleChange} />
+                            <Input labelName="City" type="text" name="city" onChange={this.handleChange} />
+                            <Input labelName="LinkedIn" type="text" name="github" onChange={this.handleChange} />
+                            <Input labelName="GitHub" type="text" name="linkedin" onChange={this.handleChange} />
                         </div>
-
                     </div>
                 </form>
+            );
+        } else {
+            return (
+                <div className="personal-form-container">
+                    <div className="personal-displayed-container">
+                        <div className="personal-heading">
+                            <div className="displayed-heading">
+                                <div className="name-container">
+                                    <div className="full-name">
+                                        {name}
+                                        <img
+                                            src={require("../../src/assets/edit-personal.png")}
+                                            alt="edit-icon"
+                                            className="edit-icon"
+                                            onClick={this.handleSubmit}
+                                        />
+                                    </div>
+                                    <div className="title">{title}</div>
+                                </div>
+                            </div>
+                            <div className="description-displayed">
+                                {description}
+                            </div>
+                        </div>
+                        <div className="other-info-container">
+                            <div>
+                                <img
+                                    src={require("../../src/assets/phone.png")}
+                                    alt="phone-icon"
+                                    className="icon"
+                                />
+                                {phone}
+                            </div>
+                            <div className="mail-container">
+                                <img
+                                    src={require("../../src/assets/email.png")}
+                                    alt="email-icon"
+                                    className="icon"
+                                />
+                                {mail}
+                            </div>
+                            <div>
+                                <img
+                                    src={require("../../src/assets/gps.png")}
+                                    alt="gps-icon"
+                                    className="icon"
+                                />
+                                {city}
+                            </div>
+                            <div className="social-container">
+                                <img
+                                    src={require("../../src/assets/github.png")}
+                                    alt="github-icon"
+                                    className="icon"
+                                />
+                                {github}
+                            </div>
+                            <div className="social-container">
+                                <img
+                                    src={require("../../src/assets/linkedin.png")}
+                                    alt="linkedin-icon"
+                                    className="icon"
+                                />
+                                {linkedin}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             );
         }
     }

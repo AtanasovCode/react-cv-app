@@ -2,33 +2,44 @@ import React from 'react';
 import Input from '../Input';
 import '../styles/EducationInfo.css';
 
+
+const initialValues = {
+    displayInfo: 0,
+    school: 'Example College',
+    yearStart: '2019',
+    yearEnd: '2020',
+    degree: 'Example Degree',
+}
+
 class DisplayEducationInfo extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            displayInfo: 0,
-            school: '',
-            yearStart: '',
-            yearEnd: '',
-            degree: '',
+            ...initialValues
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (e) => {
+    handleChange = ({target: {name, value} }) => {
         this.setState({
-            [e.target.name]: e.target.value,
+            [name]: value,
         })
     }
 
     handleSubmit = (e) => {
         const {school, yearStart, yearEnd, degree } = this.state;
-        if(!school || !degree || !yearStart || !yearEnd){
+        if(
+            !school 
+            || !degree 
+            || !yearStart 
+            || !yearEnd
+            ){
             return {displayInfo: 0}
         };
+        e.preventDefault();
         this.setState(() => {
             if (this.state.displayInfo === 0) {
                 return { displayInfo: 1 }
@@ -73,10 +84,10 @@ class DisplayEducationInfo extends React.Component {
                         />
                     </div>
                     <div className="displayed-info">
-                        <div> {this.state.school} </div>
-                        <div> Started: {this.state.degree} </div>
-                        <div> Left: {this.state.yearStart} </div>
-                        <div> Position: {this.state.yearEnd} </div>
+                        <div> <h2>{this.state.school}</h2> </div>
+                        <div> Degree: <h4>{this.state.degree}</h4> </div>
+                        <div> Started: {this.state.yearStart} </div>
+                        <div> Finished: {this.state.yearEnd} </div>
                     </div>
                 </div>
             );
