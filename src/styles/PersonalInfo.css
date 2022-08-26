@@ -1,0 +1,66 @@
+.personal-form-container {
+    padding: 25px 25px 40px 25px;
+    width: 750px;
+    background-color: var(--personal-bg);
+    margin: 0;
+    color: #fff;
+    height: 260px;
+    max-height: 260px;
+}
+
+.personal-input-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.personal-input-container input {
+    width: 200px;
+    border: none;
+    color: #fff;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.personal-input-container label {
+    width: 103%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+
+
+
+
+
+.personal-displayed-container {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+.personal-heading {
+    display: flex;
+}
+
+
+.other-info-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}

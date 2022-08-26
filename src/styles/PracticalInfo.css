@@ -1,0 +1,24 @@
+.practical-full-container {
+    margin-bottom: 76px;
+}
+
+.practical-displayed-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.practical-company {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-name {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.position {
+    font-size: 19px;
+    opacity: .7;
+}
